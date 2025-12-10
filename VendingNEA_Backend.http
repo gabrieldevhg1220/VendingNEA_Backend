@@ -1,0 +1,6 @@
+@VendingNEA_Backend_HostAddress = http://localhost:5048
+
+GET {{VendingNEA_Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
