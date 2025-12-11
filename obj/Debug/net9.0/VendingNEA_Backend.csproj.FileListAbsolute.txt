@@ -168,4 +168,4 @@ G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\refint\VendingNEA_Backend.d
 G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\VendingNEA_Backend.pdb
 G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\VendingNEA_Backend.genruntimeconfig.cache
 G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\ref\VendingNEA_Backend.dll
-G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+G:\DotNET\WebApp\VendingNEA_Backend\obj\Debug\net9.0\VendingNEA_Backend.sourcelink.json

@@ -52,9 +52,21 @@ namespace VendingNEA_Backend.Controllers
         {
             var maquina = await _context.Maquinas.FindAsync(id);
             if (maquina == null) return NotFound();
-            _context.Maquinas.Remove(maquina);
-            await _context.SaveChangesAsync();
-            return NoContent();
+
+            try
+            {
+                _context.Maquinas.Remove(maquina);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("REFERENCE constraint") == true)
+            {
+                return Conflict(new
+                {
+                    message = "No se puede eliminar la máquina porque tiene visitas, stock u otros datos relacionados.",
+                    detalle = "Elimina primero los registros dependientes o marca la máquina como inactiva."
+                });
+            }
         }
     }
 }

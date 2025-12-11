@@ -52,17 +52,30 @@ namespace VendingNEA_Backend.Controllers
         {
             var acuerdo = await _context.Acuerdos.FindAsync(id);
             if (acuerdo == null) return NotFound();
-            _context.Acuerdos.Remove(acuerdo);
-            await _context.SaveChangesAsync();
-            return NoContent();
+
+            try
+            {
+                _context.Acuerdos.Remove(acuerdo);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateException)
+            {
+                return Conflict(new
+                {
+                    message = "No se puede eliminar el acuerdo porque tiene máquinas o liquidaciones asociadas.",
+                    detalle = "Elimina primero las máquinas y liquidaciones relacionadas."
+                });
+            }
         }
 
-        // Funcionalidad extra: Control de vigencia (próximos a finalizar)
         [HttpGet("proximosAFinalizar")]
         public async Task<ActionResult<IEnumerable<Acuerdo>>> GetProximosAFinalizar()
         {
-            var fechaLimite = DateTime.Now.AddDays(30); // Próximos 30 días
-            return await _context.Acuerdos.Where(a => a.FechaFin <= fechaLimite && a.FechaFin > DateTime.Now).ToListAsync();
+            var fechaLimite = DateTime.Now.AddDays(30);
+            return await _context.Acuerdos
+                .Where(a => a.FechaFin <= fechaLimite && a.FechaFin > DateTime.Now)
+                .ToListAsync();
         }
     }
 }

@@ -52,9 +52,21 @@ namespace VendingNEA_Backend.Controllers
         {
             var empleado = await _context.Empleados.FindAsync(id);
             if (empleado == null) return NotFound();
-            _context.Empleados.Remove(empleado);
-            await _context.SaveChangesAsync();
-            return NoContent();
+
+            try
+            {
+                _context.Empleados.Remove(empleado);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (DbUpdateException)
+            {
+                return Conflict(new
+                {
+                    message = "No se puede eliminar el empleado porque es repositor, técnico o tiene registros asociados.",
+                    detalle = "Elimina primero su rol (Repositor/Técnico) o los datos relacionados."
+                });
+            }
         }
     }
 }
