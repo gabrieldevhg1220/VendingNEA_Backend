@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VendingNEA_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+244933254bee1771cecd2ffef416b2f7dc7ca990")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ed1ec48f14d81938fcaaf293e1908a91a11d520")]
 [assembly: System.Reflection.AssemblyProductAttribute("VendingNEA_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VendingNEA_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
